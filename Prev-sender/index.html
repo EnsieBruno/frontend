@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sender-Prev</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="Link-pagamento">
+    <iframe src="https://servicos.olistcontadigital.com.br/pagamentos/d9adf23b-9af1-4146-9685-58356706582b" frameborder="0"></iframe>
+  </div>
+
+  <form class="form-container">
+  <label>Nota fiscal</label>
+  <input type="file" name="nota-fiscal" />
+
+  <label>Conversa WhatsApp</label>
+  <input type="file" name="conversa[]" multiple />
+
+  <label>Comprovante de Entrega</label>
+  <input type="file" name="comprovante" />
+
+  <label>Vídeos</label>
+  <input type="file" name="videos[]" multiple />
+
+  <label>Áudios</label>
+  <input type="file" name="audios[]" multiple />
+
+    <nav>
+        <button type="submit">Limpar</button>
+        <button type="submit">Enviar</button>
+    </nav>
+  </form>
+
+</body>
+</html>
