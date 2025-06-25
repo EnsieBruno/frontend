@@ -3,23 +3,34 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   background: rgb(34, 80, 219);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  padding: 20px;
-  overflow: hidden;
+  padding: 10px;
   gap: 20px;
   transition: all 0.5s ease;
+  overflow-x: hidden;
 }
 
-/* Container visual dos dois lados (iframe e form) */
+/* Container das duas colunas (iframe + form) */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 88vh;
+  gap: 20px;
+}
+
+/* Estilo para iframe e formulário */
 .Link-pagamento,
 .form-container {
   background: rgba(255, 255, 255, 0.9);
@@ -28,12 +39,12 @@ body {
   border-radius: 20px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   width: 50%;
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 30px;
   transition: all 0.5s ease;
-  overflow:auto;
+  overflow: auto;
 }
 
 /* Iframe estilizado */
@@ -53,10 +64,6 @@ label {
   font-size: 1.1em;
   margin-top: 10px;
   text-transform: capitalize;
-
-  p{
-    padding: 0;
-  }
 }
 
 /* Inputs */
@@ -79,6 +86,7 @@ input[type="file"] {
   border: 2px dashed #ccc;
   background-color: #fafafa;
   cursor: pointer;
+  padding-right: 40px; /* espaço extra para o botão X */
 }
 
 input[type="file"]:hover {
@@ -92,18 +100,47 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(0, 80, 220, 0.15);
 }
 
+/* Wrapper de input com botão limpar */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 1px;
+}
+
+/* Botão limpar dentro do input */
+.input-wrapper .limpar {
+  position: absolute;
+  top: 60%;
+  right: 30px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: #000000;
+  border: none;
+  width: 0;
+  height: 0;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  padding: 0;
+}
+
+.input-wrapper .limpar:hover {
+  color: red;
+}
+
+/* Botões alinhados */
 form > nav {
   display: flex;
   justify-content: space-between;
+  margin-top: auto;
 }
 
-form > nav > button{
+form > nav > button {
   margin: 10px;
 }
 
-/* Botão moderno */
+/* Botão principal */
 button {
-  margin-top: 20px;
   padding: 12px 24px;
   background-color: #0050dc;
   color: #fafafa;
@@ -124,16 +161,40 @@ button:hover {
   box-shadow: 0 6px 18px rgba(0, 80, 220, 0.3);
 }
 
+/* Footer estilizado */
+footer {
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer img {
+  max-width: 100px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+footer img:hover {
+  opacity: 1;
+}
+
 /* Responsivo para mobile */
 @media (max-width: 768px) {
-  body {
+  .container {
     flex-direction: column;
-    padding: 10px;
+    height: auto;
   }
 
   .Link-pagamento,
   .form-container {
     width: 100%;
-    height: 45%;
+    height: auto;
+  }
+
+  .input-wrapper .limpar {
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
   }
 }

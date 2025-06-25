@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerador de Link - Sender-Prev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <!-- Coluna da esquerda (formulário gerador) -->
+    <div class="form-container">
+      <h2>Gerar Página Personalizada</h2>
+
+      <div class="input-wrapper">
+        <label for="iframeLink">Link do Iframe:</label>
+        <input type="text" id="iframeLink" placeholder="https://..." />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" placeholder="00.000.000/0001-00" />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="pedido">Número do Pedido:</label>
+        <input type="text" id="pedido" placeholder="123456" />
+      </div>
+
+      <nav>
+        <button onclick="gerarLink()">Gerar Link</button>
+        <button type="reset">Limpar</button>
+      </nav>
+
+      <div style="margin-top: 20px;">
+        <label>Link Gerado:</label>
+        <p id="linkFinal" style="word-wrap: break-word;"></p>
+      </div>
+    </div>
+
+    <!-- Coluna da direita (exibição ou dummy) -->
+    <div class="Link-pagamento">
+      <p style="text-align:center; color:#333; font-weight:500;">Pré-visualização do link não disponível</p>
+    </div>
+  </div>
+
+  <footer>
+    <img src="https://servicos.olistcontadigital.com.br/olist-bank-payments-spa/files/7a9a8a0713ee33a7c3dc2823d0042fac.svg" alt="Olist Logo" />
+  </footer>
+
+  <script>
+    function gerarLink() {
+      const iframe = encodeURIComponent(document.getElementById('iframeLink').value);
+      const cnpj = encodeURIComponent(document.getElementById('cnpj').value);
+      const pedido = encodeURIComponent(document.getElementById('pedido').value);
+
+      const url = `sender-prev.html?iframe=${iframe}&cnpj=${cnpj}&pedido=${pedido}`;
+      const resultado = `<a href="${url}" target="_blank">${url}</a>`;
+      document.getElementById('linkFinal').innerHTML = resultado;
+    }
+  </script>
+
+</body>
+</html>

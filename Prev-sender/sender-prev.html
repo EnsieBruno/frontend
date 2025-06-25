@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sender-Prev</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="Link-pagamento">
+      <iframe id="pagamentoIframe" src="" frameborder="0"></iframe>
+    </div>
+
+    <form class="form-container">
+      <div class="input-wrapper">
+        <label>Nota fiscal</label>
+        <input type="file" name="nota-fiscal" />
+        <button type="button" class="limpar" onclick="limparInput(this)">×</button>
+      </div>
+
+      <div class="input-wrapper">
+        <label>Conversa WhatsApp</label>
+        <input type="file" name="conversa[]" multiple />
+        <button type="button" class="limpar" onclick="limparInput(this)">×</button>
+      </div>
+
+      <div class="input-wrapper">
+        <label>Comprovante de Entrega</label>
+        <input type="file" name="comprovante" />
+        <button type="button" class="limpar" onclick="limparInput(this)">×</button>
+      </div>
+
+      <div class="input-wrapper">
+        <label>Vídeos</label>
+        <input type="file" name="videos[]" multiple />
+        <button type="button" class="limpar" onclick="limparInput(this)">×</button>
+      </div>
+
+      <div class="input-wrapper">
+        <label>Áudios</label>
+        <input type="file" name="audios[]" multiple />
+        <button type="button" class="limpar" onclick="limparInput(this)">×</button>
+      </div>
+
+      <nav>
+        <button type="reset">Limpar</button>
+        <button type="submit">Enviar</button>
+      </nav>
+    </form>
+  </div>
+
+  <footer>
+    <img src="https://servicos.olistcontadigital.com.br/olist-bank-payments-spa/files/7a9a8a0713ee33a7c3dc2823d0042fac.svg" alt="Olist Logo" />
+  </footer>
+
+  <script>
+    function limparInput(botao) {
+      const input = botao.parentElement.querySelector('input');
+      if (input) {
+        input.value = '';
+      }
+    }
+
+    // Função para ler parâmetros da URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param) || '';
+    }
+
+    // Só seta o iframe com o link decodificado da URL
+    const iframeLink = decodeURIComponent(getQueryParam('iframe'));
+    if (iframeLink) {
+      document.getElementById('pagamentoIframe').src = iframeLink;
+    }
+  </script>
+
+</body>
+</html>
