@@ -64,16 +64,27 @@
       }
     }
 
-    // Função para ler parâmetros da URL
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param) || '';
     }
 
-    // Só seta o iframe com o link decodificado da URL
-    const iframeLink = decodeURIComponent(getQueryParam('iframe'));
-    if (iframeLink) {
-      document.getElementById('pagamentoIframe').src = iframeLink;
+    // Novo: decodifica parâmetro "d" e popula o iframe
+    const dataParam = getQueryParam('d');
+
+    if (dataParam) {
+      try {
+        const json = atob(dataParam); // decodifica Base64
+        const dados = JSON.parse(json); // converte para objeto
+        const iframeLink = dados.iframe;
+        if (iframeLink) {
+          document.getElementById('pagamentoIframe').src = iframeLink;
+        }
+        // Se quiser usar `dados.cnpj` ou `dados.pedido`, eles estão disponíveis aqui também
+
+      } catch (error) {
+        console.error('Erro ao decodificar o parâmetro Base64:', error);
+      }
     }
   </script>
 
